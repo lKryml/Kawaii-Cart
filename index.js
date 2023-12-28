@@ -4,12 +4,19 @@ const shoppingListEl = document.getElementById("shopping-list");
 let shoppingList = [];
 getListFromLocalStorage();
 renderItems(shoppingList);
+
 addButtonEl.addEventListener("click", function () {
   let inputValue = inputFieldEl.value;
   shoppingList.push(inputValue);
   saveListToLocalStorage();
   renderItems(shoppingList);
   clearInputFieldEl();
+});
+
+inputFieldEl.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    addButtonEl.click();
+  }
 });
 
 function renderItems(array) {
